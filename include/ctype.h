@@ -87,7 +87,7 @@ _CRTIMP int __cdecl __MINGW_NOTHROW _toupper(int);
 /* Also defined in stdlib.h */
 #ifndef MB_CUR_MAX
 #ifdef __DECLSPEC_SUPPORTED
-# ifdef __MSVCRT__
+# if defined(__MSVCRT__) && !defined(CRTDLL_DLL)
 #  define MB_CUR_MAX __mb_cur_max
    __MINGW_IMPORT int __mb_cur_max;
 # else	/* not __MSVCRT */
@@ -96,7 +96,7 @@ _CRTIMP int __cdecl __MINGW_NOTHROW _toupper(int);
 # endif	/* not __MSVCRT */
 
 #else		/* ! __DECLSPEC_SUPPORTED */
-# ifdef __MSVCRT__
+# if defined(__MSVCRT__) && !defined(CRTDLL_DLL)
    extern int* _imp____mb_cur_max;
 #  define MB_CUR_MAX (*_imp____mb_cur_max)
 # else		/* not __MSVCRT */
@@ -111,7 +111,7 @@ _CRTIMP int __cdecl __MINGW_NOTHROW _toupper(int);
 # if __MSVCRT_VERSION__ <= 0x0700
   __MINGW_IMPORT unsigned short _ctype[];
 # endif
-# ifdef __MSVCRT__
+# if defined(__MSVCRT__) && !defined(CRTDLL_DLL)
   __MINGW_IMPORT unsigned short* _pctype;
 # else /* CRTDLL */
   __MINGW_IMPORT unsigned short* _pctype_dll;
@@ -123,7 +123,7 @@ _CRTIMP int __cdecl __MINGW_NOTHROW _toupper(int);
   extern unsigned short** _imp___ctype;
 # define _ctype (*_imp___ctype)
 # endif
-# ifdef __MSVCRT__
+# if defined(__MSVCRT__) && !defined(CRTDLL_DLL)
   extern unsigned short** _imp___pctype;
 # define _pctype (*_imp___pctype)
 # else /* CRTDLL */

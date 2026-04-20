@@ -107,7 +107,7 @@ __MINGW_IMPORT char**  __argv_dll;
  */
 #ifndef MB_CUR_MAX
 #ifdef __DECLSPEC_SUPPORTED
-# ifdef __MSVCRT__
+# if defined(__MSVCRT__) && !defined(CRTDLL_DLL)
 #  define MB_CUR_MAX __mb_cur_max
    __MINGW_IMPORT int __mb_cur_max;
 # else		/* not __MSVCRT */
@@ -116,7 +116,7 @@ __MINGW_IMPORT char**  __argv_dll;
 # endif		/* not __MSVCRT */
 
 #else		/* ! __DECLSPEC_SUPPORTED */
-# ifdef __MSVCRT__
+# if defined(__MSVCRT__) && !defined(CRTDLL_DLL)
    extern int* _imp____mbcur_max;
 #  define MB_CUR_MAX (*_imp____mb_cur_max)
 # else		/* not __MSVCRT */
